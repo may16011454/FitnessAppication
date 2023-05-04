@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace ITS_System.Migrations
+namespace FitnessApplication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -16,97 +16,6 @@ namespace ITS_System.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.15");
-
-            modelBuilder.Entity("ITS_System.Data.Models.Asset", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Room")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid?>("TechnicalIssueId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TechnicalIssueId");
-
-                    b.ToTable("Asset");
-                });
-
-            modelBuilder.Entity("ITS_System.Models.GeneralIssue", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Details")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("RaisedById")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("RecordedById")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("TimeStamp")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RaisedById");
-
-                    b.HasIndex("RecordedById");
-
-                    b.ToTable("GeneralIssue");
-                });
-
-            modelBuilder.Entity("ITS_System.Models.TechnicalIssue", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Details")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("RaisedById")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("RecordedById")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("TimeStamp")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RaisedById");
-
-                    b.HasIndex("RecordedById");
-
-                    b.ToTable("TechnicalIssue");
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -132,6 +41,36 @@ namespace ITS_System.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "b2766d63-3c40-4bda-98f0-abbc8671dc15",
+                            ConcurrencyStamp = "1369fcda-52f8-4ec4-a86b-8bafdfba16f4",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "38c6d593-81dd-40bc-b356-af8db4af6cac",
+                            ConcurrencyStamp = "c4135612-3e2c-4498-8915-663794617a5b",
+                            Name = "Studio_Staff",
+                            NormalizedName = "STUDIO_STAFF"
+                        },
+                        new
+                        {
+                            Id = "b4659694-cff4-4cad-8f02-52cd5d967bab",
+                            ConcurrencyStamp = "02c4a3f0-c2c1-47b4-ad45-87412f20fe1c",
+                            Name = "Customer",
+                            NormalizedName = "CUSTOMER"
+                        },
+                        new
+                        {
+                            Id = "c976b893-1819-4b8f-bbc8-b839f982f996",
+                            ConcurrencyStamp = "10d9e535-ae7f-4b61-bd1a-37028489d365",
+                            Name = "Management_Team",
+                            NormalizedName = "MANAGEMENT_TEAM"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -219,6 +158,24 @@ namespace ITS_System.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "37dec260-db64-4619-9b71-7a92e9fcf9f2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "898c011c-2e11-4c61-83a1-12ab352a4285",
+                            Email = "admin@admin.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@ADMIN.COM",
+                            NormalizedUserName = "ADMIN@ADMIN.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEG4gOMUXnhCF3obRPPgo+4aTNuUIe1pTU2IiHXPG+v1H7hQYHCBBnQqX+cmNT44f3A==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "9876c6a5-c40a-4e97-b3b3-d22d8f732f55",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@admin.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -247,11 +204,9 @@ namespace ITS_System.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ProviderDisplayName")
@@ -281,6 +236,13 @@ namespace ITS_System.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "37dec260-db64-4619-9b71-7a92e9fcf9f2",
+                            RoleId = "b2766d63-3c40-4bda-98f0-abbc8671dc15"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -289,11 +251,9 @@ namespace ITS_System.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Value")
@@ -302,51 +262,6 @@ namespace ITS_System.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("ITS_System.Data.Models.Asset", b =>
-                {
-                    b.HasOne("ITS_System.Models.TechnicalIssue", null)
-                        .WithMany("AssetsAffected")
-                        .HasForeignKey("TechnicalIssueId");
-                });
-
-            modelBuilder.Entity("ITS_System.Models.GeneralIssue", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "RaisedBy")
-                        .WithMany()
-                        .HasForeignKey("RaisedById")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "RecordedBy")
-                        .WithMany()
-                        .HasForeignKey("RecordedById")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("RaisedBy");
-
-                    b.Navigation("RecordedBy");
-                });
-
-            modelBuilder.Entity("ITS_System.Models.TechnicalIssue", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "RaisedBy")
-                        .WithMany()
-                        .HasForeignKey("RaisedById")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "RecordedBy")
-                        .WithMany()
-                        .HasForeignKey("RecordedById")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("RaisedBy");
-
-                    b.Navigation("RecordedBy");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -398,11 +313,6 @@ namespace ITS_System.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ITS_System.Models.TechnicalIssue", b =>
-                {
-                    b.Navigation("AssetsAffected");
                 });
 #pragma warning restore 612, 618
         }
