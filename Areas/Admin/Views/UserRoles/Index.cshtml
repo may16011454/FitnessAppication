@@ -1,0 +1,44 @@
+﻿@using ITS_System.Areas.Admin.Models
+@model IEnumerable<UserRolesViewModel>
+
+@{
+    ViewData["Title"] = "User Roles Manager Page";
+}
+
+<div class = "text-center">
+<h1>User Roles Manager</h1>
+
+@if (ViewData["Message"] != null)
+{
+    <div class="alert alert-danger mx-2">@ViewData["Message"]</div>
+}
+
+<table class ="table table-striped">
+    <thead class="thead-light">
+        <tr>
+            <th>User ID</th>
+            <th>User Email</th>
+            <th>Roles</th>
+            <th>Manage Roles</th>
+            <th>Manager User</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var user in Model)
+            {
+                <tr>
+                    <td>@user.User.Id</td>
+                    <td>@user.User.Email</td>
+                    <td>@string.Join(" , ", user.Roles.ToList())</td>
+                    <td>
+                        <a class="btn-primary bg-primary btn"asp-action="Manage" asp-route-id="@user.User.Id">Manage Roles</a>
+                    </td>
+                    <td>
+                        <a class="btn-primary bg-danger btn"asp-action="Delete" asp-route-id="@user.User.Id">Delete User</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+</table>
+
+</div>

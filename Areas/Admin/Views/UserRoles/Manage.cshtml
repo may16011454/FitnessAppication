@@ -1,0 +1,42 @@
+﻿@using ITS_System.Areas.Admin.Models
+@model List<ManageUserRoleViewModel>
+
+@{
+    ViewData["Title"] = "User Roles Manager Page";
+}
+
+<div class = "text-center">
+<h1>User Roles Manager</h1>
+
+@if (ViewData["Message"] != null)
+{
+    <div class="alert alert-danger mx-2">@ViewData["Message"]</div>
+}
+
+
+<form asp-action"Manage" method="post">
+    <div class="card">
+        <div class="card-header">
+            <h2>@Model.FirstOrDefault().User.Email Roles</h2>
+        </div>
+        <div class="card-body">
+            @for (int i =0; i < Model.Count; i++)
+            {
+                <div class="form-check">
+                    <input type="hidden" asp-for="@Model[i].User.Id">
+                    <input type="hidden" asp-for="@Model[i].Role.Name">
+                    <input class="fprm=check-input" type="checkbox" asp-for="@Model[i].InRole">
+                    <label class="form-check-label"> @Model[i].Role.Name</label>
+                </div>
+            }
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn-success btn">Update</button>
+            <a class="btn-danger btn" asp-action="Index">Cancel</a>
+        </div>
+    </div>
+</form>
+
+
+</div>
+
