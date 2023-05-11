@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FitnessApplication.Migrations
 {
-    public partial class init : Migration
+    public partial class cap : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,6 +46,21 @@ namespace FitnessApplication.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Rooms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: false),
+                    Capacity = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rooms", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -154,35 +169,138 @@ namespace FitnessApplication.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "38c6d593-81dd-40bc-b356-af8db4af6cac", "c4135612-3e2c-4498-8915-663794617a5b", "Studio_Staff", "STUDIO_STAFF" });
+            migrationBuilder.CreateTable(
+                name: "Schedule",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    DateTime = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    InstructorId = table.Column<string>(type: "TEXT", nullable: false),
+                    MaxNumberOfBookings = table.Column<int>(type: "INTEGER", nullable: false),
+                    RoomId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Status = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Schedule", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Schedule_AspNetUsers_InstructorId",
+                        column: x => x.InstructorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Schedule_Rooms_RoomId",
+                        column: x => x.RoomId,
+                        principalTable: "Rooms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Bookings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ClassId = table.Column<int>(type: "INTEGER", nullable: false),
+                    AttendeeId = table.Column<string>(type: "TEXT", nullable: false),
+                    TimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Status = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bookings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Bookings_AspNetUsers_AttendeeId",
+                        column: x => x.AttendeeId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Bookings_Schedule_ClassId",
+                        column: x => x.ClassId,
+                        principalTable: "Schedule",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Equipments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: false),
+                    ClassScheduleId = table.Column<int>(type: "INTEGER", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Equipments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Equipments_Schedule_ClassScheduleId",
+                        column: x => x.ClassScheduleId,
+                        principalTable: "Schedule",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WaitingListEntry",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CustomerId = table.Column<string>(type: "TEXT", nullable: false),
+                    AddedOn = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ClassScheduleId = table.Column<int>(type: "INTEGER", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WaitingListEntry", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WaitingListEntry_AspNetUsers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_WaitingListEntry_Schedule_ClassScheduleId",
+                        column: x => x.ClassScheduleId,
+                        principalTable: "Schedule",
+                        principalColumn: "Id");
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "b2766d63-3c40-4bda-98f0-abbc8671dc15", "1369fcda-52f8-4ec4-a86b-8bafdfba16f4", "Admin", "ADMIN" });
+                values: new object[] { "33db995c-8ddc-41f4-9fd3-24bd51fe1c35", "73bce4e0-50d4-45c6-aed2-adc5a50831e1", "Management_Team", "MANAGEMENT_TEAM" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "b4659694-cff4-4cad-8f02-52cd5d967bab", "02c4a3f0-c2c1-47b4-ad45-87412f20fe1c", "Customer", "CUSTOMER" });
+                values: new object[] { "3f8a7676-5cc6-44e0-a829-1f4ae8546279", "2e2019b8-a937-4ccc-8d23-4061ebc21f3d", "Studio_Staff", "STUDIO_STAFF" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c976b893-1819-4b8f-bbc8-b839f982f996", "10d9e535-ae7f-4b61-bd1a-37028489d365", "Management_Team", "MANAGEMENT_TEAM" });
+                values: new object[] { "77f9bf70-a67e-487d-89f1-a4ea30314afb", "c6a15fc5-8090-4ab8-9292-cfe9fcea15ad", "Admin", "ADMIN" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "dd8ea1ca-a39a-4b02-9126-65981786baae", "bb460fc7-3455-402c-a174-1eb2b054b5a9", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "37dec260-db64-4619-9b71-7a92e9fcf9f2", 0, "898c011c-2e11-4c61-83a1-12ab352a4285", "admin@admin.com", false, false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEG4gOMUXnhCF3obRPPgo+4aTNuUIe1pTU2IiHXPG+v1H7hQYHCBBnQqX+cmNT44f3A==", null, false, "9876c6a5-c40a-4e97-b3b3-d22d8f732f55", false, "admin@admin.com" });
+                values: new object[] { "2f066558-f895-4d3d-9936-02a862c313fd", 0, "4f946d5a-ff06-487e-bf96-0eca0bf483bb", "admin@admin.com", false, false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEBZvziF7c02HwyQD5uC4nW+aZ/0vBVFF6gQSB+OcD3C1n3ZWh4yFgbJbjHRKSMCfbA==", null, false, "26b8bec8-347a-4205-bcd5-ca4e16b80ec0", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "b2766d63-3c40-4bda-98f0-abbc8671dc15", "37dec260-db64-4619-9b71-7a92e9fcf9f2" });
+                values: new object[] { "77f9bf70-a67e-487d-89f1-a4ea30314afb", "2f066558-f895-4d3d-9936-02a862c313fd" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -220,6 +338,41 @@ namespace FitnessApplication.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bookings_AttendeeId",
+                table: "Bookings",
+                column: "AttendeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bookings_ClassId",
+                table: "Bookings",
+                column: "ClassId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Equipments_ClassScheduleId",
+                table: "Equipments",
+                column: "ClassScheduleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Schedule_InstructorId",
+                table: "Schedule",
+                column: "InstructorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Schedule_RoomId",
+                table: "Schedule",
+                column: "RoomId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WaitingListEntry_ClassScheduleId",
+                table: "WaitingListEntry",
+                column: "ClassScheduleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WaitingListEntry_CustomerId",
+                table: "WaitingListEntry",
+                column: "CustomerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -240,10 +393,25 @@ namespace FitnessApplication.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Bookings");
+
+            migrationBuilder.DropTable(
+                name: "Equipments");
+
+            migrationBuilder.DropTable(
+                name: "WaitingListEntry");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Schedule");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Rooms");
         }
     }
 }

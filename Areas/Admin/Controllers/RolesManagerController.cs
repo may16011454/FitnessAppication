@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace ITS_System.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class RolesManagerController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;

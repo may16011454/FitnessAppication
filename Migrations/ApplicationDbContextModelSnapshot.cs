@@ -17,6 +17,136 @@ namespace FitnessApplication.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.15");
 
+            modelBuilder.Entity("FitnessApplication.Models.Booking", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AttendeeId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ClassId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("TimeStamp")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AttendeeId");
+
+                    b.HasIndex("ClassId");
+
+                    b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("FitnessApplication.Models.ClassSchedule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("InstructorId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("MaxNumberOfBookings")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstructorId");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("Schedule");
+                });
+
+            modelBuilder.Entity("FitnessApplication.Models.Equipment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ClassScheduleId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClassScheduleId");
+
+                    b.ToTable("Equipments");
+                });
+
+            modelBuilder.Entity("FitnessApplication.Models.Room", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Rooms");
+                });
+
+            modelBuilder.Entity("FitnessApplication.Models.WaitingListEntry", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("AddedOn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("ClassScheduleId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CustomerId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClassScheduleId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("WaitingListEntry");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -45,29 +175,29 @@ namespace FitnessApplication.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b2766d63-3c40-4bda-98f0-abbc8671dc15",
-                            ConcurrencyStamp = "1369fcda-52f8-4ec4-a86b-8bafdfba16f4",
+                            Id = "77f9bf70-a67e-487d-89f1-a4ea30314afb",
+                            ConcurrencyStamp = "c6a15fc5-8090-4ab8-9292-cfe9fcea15ad",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "38c6d593-81dd-40bc-b356-af8db4af6cac",
-                            ConcurrencyStamp = "c4135612-3e2c-4498-8915-663794617a5b",
+                            Id = "3f8a7676-5cc6-44e0-a829-1f4ae8546279",
+                            ConcurrencyStamp = "2e2019b8-a937-4ccc-8d23-4061ebc21f3d",
                             Name = "Studio_Staff",
                             NormalizedName = "STUDIO_STAFF"
                         },
                         new
                         {
-                            Id = "b4659694-cff4-4cad-8f02-52cd5d967bab",
-                            ConcurrencyStamp = "02c4a3f0-c2c1-47b4-ad45-87412f20fe1c",
+                            Id = "dd8ea1ca-a39a-4b02-9126-65981786baae",
+                            ConcurrencyStamp = "bb460fc7-3455-402c-a174-1eb2b054b5a9",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "c976b893-1819-4b8f-bbc8-b839f982f996",
-                            ConcurrencyStamp = "10d9e535-ae7f-4b61-bd1a-37028489d365",
+                            Id = "33db995c-8ddc-41f4-9fd3-24bd51fe1c35",
+                            ConcurrencyStamp = "73bce4e0-50d4-45c6-aed2-adc5a50831e1",
                             Name = "Management_Team",
                             NormalizedName = "MANAGEMENT_TEAM"
                         });
@@ -162,17 +292,17 @@ namespace FitnessApplication.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "37dec260-db64-4619-9b71-7a92e9fcf9f2",
+                            Id = "2f066558-f895-4d3d-9936-02a862c313fd",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "898c011c-2e11-4c61-83a1-12ab352a4285",
+                            ConcurrencyStamp = "4f946d5a-ff06-487e-bf96-0eca0bf483bb",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG4gOMUXnhCF3obRPPgo+4aTNuUIe1pTU2IiHXPG+v1H7hQYHCBBnQqX+cmNT44f3A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBZvziF7c02HwyQD5uC4nW+aZ/0vBVFF6gQSB+OcD3C1n3ZWh4yFgbJbjHRKSMCfbA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9876c6a5-c40a-4e97-b3b3-d22d8f732f55",
+                            SecurityStamp = "26b8bec8-347a-4205-bcd5-ca4e16b80ec0",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         });
@@ -240,8 +370,8 @@ namespace FitnessApplication.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "37dec260-db64-4619-9b71-7a92e9fcf9f2",
-                            RoleId = "b2766d63-3c40-4bda-98f0-abbc8671dc15"
+                            UserId = "2f066558-f895-4d3d-9936-02a862c313fd",
+                            RoleId = "77f9bf70-a67e-487d-89f1-a4ea30314afb"
                         });
                 });
 
@@ -262,6 +392,66 @@ namespace FitnessApplication.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("FitnessApplication.Models.Booking", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Attendee")
+                        .WithMany()
+                        .HasForeignKey("AttendeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FitnessApplication.Models.ClassSchedule", "Class")
+                        .WithMany("Attendees")
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attendee");
+
+                    b.Navigation("Class");
+                });
+
+            modelBuilder.Entity("FitnessApplication.Models.ClassSchedule", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Instructor")
+                        .WithMany()
+                        .HasForeignKey("InstructorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FitnessApplication.Models.Room", "Room")
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Instructor");
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("FitnessApplication.Models.Equipment", b =>
+                {
+                    b.HasOne("FitnessApplication.Models.ClassSchedule", null)
+                        .WithMany("Equipment")
+                        .HasForeignKey("ClassScheduleId");
+                });
+
+            modelBuilder.Entity("FitnessApplication.Models.WaitingListEntry", b =>
+                {
+                    b.HasOne("FitnessApplication.Models.ClassSchedule", null)
+                        .WithMany("WaitingList")
+                        .HasForeignKey("ClassScheduleId");
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -313,6 +503,15 @@ namespace FitnessApplication.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FitnessApplication.Models.ClassSchedule", b =>
+                {
+                    b.Navigation("Attendees");
+
+                    b.Navigation("Equipment");
+
+                    b.Navigation("WaitingList");
                 });
 #pragma warning restore 612, 618
         }
