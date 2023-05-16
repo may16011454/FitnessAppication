@@ -21,18 +21,31 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
+                        </li>                        
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin Dashboard</a>
+                        </li>
+                          <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Management
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="RolesManager" asp-action="Index">Roles Manager</a>
-                        </li>
-                        <li class="nav-item">
+                            </li>
+                            <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="UserRoles" asp-action="Index">User Roles Manager</a>
-                        </li>                        
-                        <li class="nav-item">
+                            </li> 
+                            <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Room" asp-action="Index"> Room Manager</a>
-                        </li>                        
-                        <li class="nav-item">
+                            </li>  
+                            <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Equipment" asp-action="Index"> Equipment Manager</a>
+                            </li> 
+                            <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="ClassSchedule" asp-action="Index"> Manage Classes</a>
+                            </li>
+                          </ul>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />

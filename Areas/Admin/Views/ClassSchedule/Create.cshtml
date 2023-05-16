@@ -1,0 +1,55 @@
+﻿@model FitnessApplication.Models.ClassSchedule
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ClassSchedule</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mt-2">
+                <label asp-for="DateTime" class="control-label"></label>
+                <input asp-for="DateTime" class="form-control" />
+                <span asp-validation-for="DateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="mt-2">
+                   <select class="form-select" asp-items="ViewBag.Instructor">
+                    <option selected>Pick Instructor</option>
+                    <option value="1" >Nat</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxNumberOfBookings" class="control-label"></label>
+                <input asp-for="MaxNumberOfBookings" class="form-control" min="1" max="50"/>
+                <span asp-validation-for="MaxNumberOfBookings" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="RoomId" class="control-label"></label>
+                <select asp-for="RoomId" class ="form-control" asp-items="ViewBag.RoomId"></select>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control form-select" asp-items="Html.GetEnumSelectList<FitnessApplication.Models.Enums.ClassStatus>()"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="mt-2 btn btn-dark">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
