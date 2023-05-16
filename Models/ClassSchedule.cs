@@ -12,6 +12,9 @@ namespace FitnessApplication.Models
         public int Id { get; set; }
         [Required]
         public DateTime DateTime { get; set; }
+        [ForeignKey("InstructorId")]
+        public string InstructorId { get; set; }
+
         [Required]
         public IdentityUser Instructor { get; set; }
         [Required]
@@ -26,7 +29,7 @@ namespace FitnessApplication.Models
         
         public virtual List<WaitingListEntry> WaitingList { get; set; }
         public  virtual List<Booking> Attendees{ get; set; }
-        public virtual List<Equipment> Equipment{ get; set; }
+        public virtual List<EquipmentListEntry> EquipmentList{ get; set; }
         
     }
 }

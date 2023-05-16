@@ -3,6 +3,7 @@ using System;
 using ITS_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitnessApplication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230516143731_init2")]
+    partial class init2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.15");
@@ -82,6 +84,9 @@ namespace FitnessApplication.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("ClassScheduleId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -92,31 +97,9 @@ namespace FitnessApplication.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Equipments");
-                });
-
-            modelBuilder.Entity("FitnessApplication.Models.EquipmentListEntry", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("AddedOn")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("ClassScheduleId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("EquipmentId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
                     b.HasIndex("ClassScheduleId");
 
-                    b.HasIndex("EquipmentId");
-
-                    b.ToTable("EquipmentListEntry");
+                    b.ToTable("Equipments");
                 });
 
             modelBuilder.Entity("FitnessApplication.Models.Room", b =>
@@ -194,29 +177,29 @@ namespace FitnessApplication.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "74bed684-c6a2-4e8b-803a-a37fb6ba5859",
-                            ConcurrencyStamp = "07f344bf-f5ce-40ab-b3b1-bbf5ae8a786c",
+                            Id = "0e076e3b-2841-4f20-a836-99fbff457a27",
+                            ConcurrencyStamp = "89bf8a92-08e5-470d-b1bc-6e7181009d68",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "67717603-dbbe-4727-bb9d-0a6536311702",
-                            ConcurrencyStamp = "99e0c630-f388-40e1-ac08-ce2373a20341",
+                            Id = "f833b40c-1813-41a6-9d69-79fd27bd453f",
+                            ConcurrencyStamp = "22c10b95-4fb4-420f-9312-fb90e5ff0d97",
                             Name = "Studio_Staff",
                             NormalizedName = "STUDIO_STAFF"
                         },
                         new
                         {
-                            Id = "daf39683-b11b-490d-884b-da15c346f684",
-                            ConcurrencyStamp = "45b614a7-64c3-4824-a9cb-ecb426bdbb08",
+                            Id = "4edeb530-0478-4938-ba90-a604decf9bb1",
+                            ConcurrencyStamp = "5e8d6033-69ec-403f-a82e-1a211802e4e4",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "db752949-4c56-4bd1-88a1-b60ca8f5742b",
-                            ConcurrencyStamp = "edf66960-438b-4e7d-abd0-027b019ed65d",
+                            Id = "5bc08f97-75aa-4a25-9998-6933430d6298",
+                            ConcurrencyStamp = "cbe41e93-e412-4d72-aabe-f9ea65ab0f96",
                             Name = "Management_Team",
                             NormalizedName = "MANAGEMENT_TEAM"
                         });
@@ -311,17 +294,17 @@ namespace FitnessApplication.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2dea8e58-0e17-46a9-beb1-6827ce5bb077",
+                            Id = "8c9cae93-3309-4592-8ed6-ddcd082b6932",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c9ae0a29-9257-48d2-af8b-9587a6482ce6",
+                            ConcurrencyStamp = "f4964d7a-9ee0-4027-80ff-21da683d7fb6",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMWv8u8qj7cBGeC4ZUx50RNpRkRw7mNDumMNEzUoNd3DibTlqeU4xppXcGQBCylNsQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI8I69f5QmHzkXnmn1uEHsvTH5weFBQveP4trP2Qs0QnuQ6kK1wvxCAfXlLxsKbaBw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4e3132f8-8851-4949-8889-19d979c2de98",
+                            SecurityStamp = "0d91e441-e650-4f6f-be27-b5e34b9b2bf9",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         });
@@ -389,8 +372,8 @@ namespace FitnessApplication.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "2dea8e58-0e17-46a9-beb1-6827ce5bb077",
-                            RoleId = "74bed684-c6a2-4e8b-803a-a37fb6ba5859"
+                            UserId = "8c9cae93-3309-4592-8ed6-ddcd082b6932",
+                            RoleId = "0e076e3b-2841-4f20-a836-99fbff457a27"
                         });
                 });
 
@@ -451,19 +434,11 @@ namespace FitnessApplication.Migrations
                     b.Navigation("Room");
                 });
 
-            modelBuilder.Entity("FitnessApplication.Models.EquipmentListEntry", b =>
+            modelBuilder.Entity("FitnessApplication.Models.Equipment", b =>
                 {
                     b.HasOne("FitnessApplication.Models.ClassSchedule", null)
-                        .WithMany("EquipmentList")
+                        .WithMany("Equipment")
                         .HasForeignKey("ClassScheduleId");
-
-                    b.HasOne("FitnessApplication.Models.Equipment", "Equipment")
-                        .WithMany()
-                        .HasForeignKey("EquipmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Equipment");
                 });
 
             modelBuilder.Entity("FitnessApplication.Models.WaitingListEntry", b =>
@@ -536,7 +511,7 @@ namespace FitnessApplication.Migrations
                 {
                     b.Navigation("Attendees");
 
-                    b.Navigation("EquipmentList");
+                    b.Navigation("Equipment");
 
                     b.Navigation("WaitingList");
                 });

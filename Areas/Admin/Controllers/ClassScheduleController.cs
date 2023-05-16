@@ -52,7 +52,7 @@ namespace FitnessApplication.Areas.Admin
         // GET: Admin/ClassSchedule/Create
         public IActionResult Create()
         {
-            ViewData["Instructor"] = new SelectList(_context.Users, "Id", "Email");
+            ViewData["InstructorId"] = new SelectList(_context.Users, "Id", "Email");
             ViewData["RoomId"] = new SelectList(_context.Rooms, "Id", "Name");
             return View();
         }
@@ -62,15 +62,22 @@ namespace FitnessApplication.Areas.Admin
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DateTime,MaxNumberOfBookings,RoomId,Status")] ClassSchedule classSchedule)
+        public async Task<IActionResult> Create ([Bind("Id,DateTime,InstructorId,MaxNumberOfBookings,RoomId,Status")] ClassSchedule classSchedule)
         {
-            if (ModelState.IsValid)
-            {
+            classSchedule.Room =  await _context.Rooms.FindAsync(classSchedule.RoomId);
+            classSchedule.Instructor =  await _context.Users.FindAsync(classSchedule.InstructorId);
+
+            if(classSchedule.InstructorId != null && 
+                classSchedule.DateTime != null && 
+                classSchedule.Status != null && 
+                classSchedule.MaxNumberOfBookings > 0 &&
+                classSchedule.RoomId != null)
+            { 
                 _context.Add(classSchedule);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Instructor"] = new SelectList(_context.Users, "Id", "Email");
+            ViewData["InstructorId"] = new SelectList(_context.Users, "Id", "Email");
             ViewData["RoomId"] = new SelectList(_context.Rooms, "Id", "Name", classSchedule.RoomId);
             return View(classSchedule);
         }
@@ -88,7 +95,7 @@ namespace FitnessApplication.Areas.Admin
             {
                 return NotFound();
             }
-            ViewData["Instructor"] = new SelectList(_context.Users, "Id", "Email");
+            ViewData["InstructorId"] = new SelectList(_context.Users, "Id", "Email");
             ViewData["RoomId"] = new SelectList(_context.Rooms, "Id", "Name", classSchedule.RoomId);
             return View(classSchedule);
         }
@@ -125,7 +132,7 @@ namespace FitnessApplication.Areas.Admin
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Instructor"] = new SelectList(_context.Users, "Id", "Email");
+            ViewData["InstructorId"] = new SelectList(_context.Users, "Id", "Email");
             ViewData["RoomId"] = new SelectList(_context.Rooms, "Id", "Name", classSchedule.RoomId);
             return View(classSchedule);
         }
