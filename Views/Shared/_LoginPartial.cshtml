@@ -10,9 +10,16 @@
     @if(await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Admin"))
         {
          <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
+            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Dashboard</a>
          </li>
         }
+
+    @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Customer"))
+         {
+        <li class="nav-item">   
+            <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Index">Customer Dashboard</a>
+        </li>
+         }
 
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
