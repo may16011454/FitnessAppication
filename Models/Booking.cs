@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using static FitnessApplication.Models.Enums;
 
 namespace FitnessApplication.Models
@@ -8,13 +9,24 @@ namespace FitnessApplication.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+
+
+        [ForeignKey("ClassId")]
         public ClassSchedule Class { get; set; }
+
         [Required]
+        public int ClassId { get; set; }
+
+        [ForeignKey("AttendeeId")]
         public IdentityUser Attendee { get; set; }
+
+        [Required]
+        public string AttendeeId { get; set; }
+
         [Required]
         public DateTime TimeStamp { get; set; }
+
         [Required]
-        public BookingStatus Status  { get; set; }
+        public BookingStatus Status { get; set; }
     }
 }

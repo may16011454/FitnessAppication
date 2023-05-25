@@ -1,0 +1,64 @@
+﻿@model IEnumerable<FitnessApplication.Models.Booking>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Class)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Attendee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeStamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+
+
+
+            <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.TimeStamp)</h5>
+                <p class="card-text">
+                    <strong>Name:</strong> @Html.DisplayFor(modelItem => item.Attendee.Email) <br />
+                    <strong>Name of Class:</strong> @Html.DisplayFor(modelItem => item.Class.Name) <br />
+                    <strong>Status:</strong> @Html.DisplayFor(modelItem => item.Status)
+                </p>
+            </div>
+        </div>
+
+
+
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class.Instructor.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Attendee.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeStamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+        </tr>
+}
+    </tbody>
+</table>

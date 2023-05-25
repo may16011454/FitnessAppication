@@ -10,27 +10,42 @@ namespace FitnessApplication.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
+        [Display(Name = "Class Name")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Class Date and Time")]
         public DateTime DateTime { get; set; }
-        [ForeignKey("InstructorId")]
+
+        [Required]
+        [Display(Name = "Instructor")]
         public string InstructorId { get; set; }
 
-        [Required]
+        [ForeignKey("InstructorId")]
         public IdentityUser Instructor { get; set; }
+
         [Required]
+        [Display(Name = "Max Number of Bookings")]
         public int MaxNumberOfBookings { get; set; }
-        [Required]
-        public Room Room { get; set; }
-        [Required]
+
+        public int AvailableSpaces { get; set; }
+
         [ForeignKey("RoomId")]
+        public Room Room { get; set; }
+
+        [Required]
+        [Display(Name = "Room")]
         public int RoomId { get; set; }
+
         public ClassStatus Status { get; set; }
 
-        
-        public virtual List<WaitingListEntry> WaitingList { get; set; }
-        public  virtual List<Booking> Attendees{ get; set; }
-        public virtual List<EquipmentListEntry> EquipmentList{ get; set; }
-        
+        public virtual List<WaitingListEntry> WaitingList { get; set; } = new List<WaitingListEntry>();
+        public virtual List<Booking> Attendees { get; set; } = new List<Booking>();
+        public virtual List<EquipmentListEntry> EquipmentList { get; set; } = new List<EquipmentListEntry>();
+
+
     }
 }
 

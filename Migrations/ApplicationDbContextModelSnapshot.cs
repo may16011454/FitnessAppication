@@ -15,7 +15,7 @@ namespace FitnessApplication.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.15");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.16");
 
             modelBuilder.Entity("FitnessApplication.Models.Booking", b =>
                 {
@@ -51,6 +51,9 @@ namespace FitnessApplication.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("AvailableSpaces")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("TEXT");
 
@@ -60,6 +63,10 @@ namespace FitnessApplication.Migrations
 
                     b.Property<int>("MaxNumberOfBookings")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("RoomId")
                         .HasColumnType("INTEGER");
@@ -194,29 +201,29 @@ namespace FitnessApplication.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "74bed684-c6a2-4e8b-803a-a37fb6ba5859",
-                            ConcurrencyStamp = "07f344bf-f5ce-40ab-b3b1-bbf5ae8a786c",
+                            Id = "bda5d1c1-9fa4-4307-b1f9-c4ccb7ad3c69",
+                            ConcurrencyStamp = "93770440-61d1-4dd2-8cca-13c65ea4010d",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "67717603-dbbe-4727-bb9d-0a6536311702",
-                            ConcurrencyStamp = "99e0c630-f388-40e1-ac08-ce2373a20341",
+                            Id = "8e693bf7-7295-4c72-9aff-a79b879d13a5",
+                            ConcurrencyStamp = "99c3b862-4af3-4374-9244-49b4d804e723",
                             Name = "Studio_Staff",
                             NormalizedName = "STUDIO_STAFF"
                         },
                         new
                         {
-                            Id = "daf39683-b11b-490d-884b-da15c346f684",
-                            ConcurrencyStamp = "45b614a7-64c3-4824-a9cb-ecb426bdbb08",
+                            Id = "fb59103d-39bf-455d-a7a8-30c8b980bc42",
+                            ConcurrencyStamp = "db9d0b89-7f38-4791-bc5b-285506b45222",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "db752949-4c56-4bd1-88a1-b60ca8f5742b",
-                            ConcurrencyStamp = "edf66960-438b-4e7d-abd0-027b019ed65d",
+                            Id = "2c6218f2-e18b-47ae-bf91-7a488dd5c269",
+                            ConcurrencyStamp = "09e3822e-08e6-4ad4-aaf2-44932a6601a3",
                             Name = "Management_Team",
                             NormalizedName = "MANAGEMENT_TEAM"
                         });
@@ -311,17 +318,17 @@ namespace FitnessApplication.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2dea8e58-0e17-46a9-beb1-6827ce5bb077",
+                            Id = "c9d70ab2-b445-41c6-8907-4634b96d9f91",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c9ae0a29-9257-48d2-af8b-9587a6482ce6",
+                            ConcurrencyStamp = "9b84d474-1050-4cb8-a0bb-8e68492c5f28",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMWv8u8qj7cBGeC4ZUx50RNpRkRw7mNDumMNEzUoNd3DibTlqeU4xppXcGQBCylNsQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOxrXIfDobDUmftHCsHP8NU+IMAZO8AwaB3fPknoqu12WSlagIl2TUwI9PMq7qgWBw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4e3132f8-8851-4949-8889-19d979c2de98",
+                            SecurityStamp = "d8630f7f-4713-4aca-863d-d38547c16f0e",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         });
@@ -389,8 +396,8 @@ namespace FitnessApplication.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "2dea8e58-0e17-46a9-beb1-6827ce5bb077",
-                            RoleId = "74bed684-c6a2-4e8b-803a-a37fb6ba5859"
+                            UserId = "c9d70ab2-b445-41c6-8907-4634b96d9f91",
+                            RoleId = "bda5d1c1-9fa4-4307-b1f9-c4ccb7ad3c69"
                         });
                 });
 

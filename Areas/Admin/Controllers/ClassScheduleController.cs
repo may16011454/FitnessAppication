@@ -62,7 +62,7 @@ namespace FitnessApplication.Areas.Admin
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create ([Bind("Id,DateTime,InstructorId,MaxNumberOfBookings,RoomId,Status")] ClassSchedule classSchedule)
+        public async Task<IActionResult> Create ([Bind("Name,Id,DateTime,InstructorId,MaxNumberOfBookings,RoomId,Status")] ClassSchedule classSchedule)
         {
             classSchedule.Room =  await _context.Rooms.FindAsync(classSchedule.RoomId);
             classSchedule.Instructor =  await _context.Users.FindAsync(classSchedule.InstructorId);

@@ -1,51 +1,77 @@
 ﻿@model IEnumerable<FitnessApplication.Models.ClassSchedule>
 
 @{
-    ViewData["Title"] = "Manage Classes";
+    ViewData["Title"] = "View Classes";
 }
 
-<h1>Manage Classes</h1>
+<style>
+    /* Background image */
+    body {
+        background-image: url('/images/gymbg.jpg');
+        background-size: cover;
+        background-position: center;
+    }
 
-<p>
-    <a asp-action="Create" class="mt-2 btn btn-info">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DateTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaxNumberOfBookings)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Room)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxNumberOfBookings)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoomId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Join</a> |
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    /* Card styles */
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 15px;
+        margin-bottom: 15px;
+        background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+    }
+
+    .card-header {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .card-table {
+        width: 100%;
+    }
+</style>
+
+<div class="card">
+    <h1 class="card-header">View Classes</h1>
+ <table class="card-table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaxNumberOfBookings)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Room)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxNumberOfBookings)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a asp-action="Joined" asp-route-id="" class="btn btn-info mt-2">Join</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
