@@ -4,21 +4,51 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>View Bookings</h1>
+<style>
+    /* Background image */
+    body {
+        background-image: url('/images/gymbg.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+
+    /* Card styles */
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 15px;
+        margin-bottom: 15px;
+        background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+        width: calc(50% - 15px); /* Adjust the width as desired */
+        box-sizing: border-box;
+        float: left;
+    }
+
+    .card-header {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .card-table {
+        width: 100%;
+    }
+</style>
+
+<h1 class="text-light">View Bookings</h1>
 
 <form asp-action="Index" method="get">
     <div class="input-group mb-3">
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="searchString">
         <button class="btn btn-info" type="submit">Search</button>
     </div>
-
 </form>
 
+<div style="clear: both;"></div>
 
-<div class="d-flex flex-wrap justify-content-between">
+<div class="card-container">
     @foreach (var item in Model)
     {
-        <div class="card mb-4">
+        <div class="card">
             <div class="card-body">
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.DateTime)</h5>

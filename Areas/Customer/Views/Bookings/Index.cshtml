@@ -4,29 +4,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+<h1>Book A Class</h1>
+
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Class)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Attendee)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TimeStamp)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
     <tbody>
 @foreach (var item in Model) {
 
@@ -39,26 +21,29 @@
                     <strong>Name:</strong> @Html.DisplayFor(modelItem => item.Attendee.Email) <br />
                     <strong>Name of Class:</strong> @Html.DisplayFor(modelItem => item.Class.Name) <br />
                     <strong>Status:</strong> @Html.DisplayFor(modelItem => item.Status)
-                </p>
+                </p>          
+                <div class="d-flex">
+                <button onclick="confirmDelete('@Url.Action("Delete", new { id = @item.Id })')" class="btn-danger btn">Cancel Booking</button>
+                </div>
             </div>
         </div>
-
-
-
-
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Class.Instructor.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Attendee.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeStamp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-        </tr>
 }
     </tbody>
 </table>
+
+<script>
+    function confirmDelete(deleteUrl) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this booking!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, keep it'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = deleteUrl;
+            }
+        })
+    }
+</script>
