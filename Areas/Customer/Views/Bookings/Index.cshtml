@@ -1,35 +1,69 @@
 ﻿@model IEnumerable<FitnessApplication.Models.Booking>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Bookings";
 }
 
+<style>
+    /* Background image */
+    body {
+        background-image: url('/images/gymbg.jpg');
+        background-size: cover;
+        background-position: center;
+    }
 
+    /* Card styles */
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 15px;
+        margin-bottom: 15px;
+        background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+        width: calc(50% - 15px); /* Adjust the width as desired */
+        box-sizing: border-box;
+        float: left;
+    }
 
-<h1>Book A Class</h1>
+    .card-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
 
-<table class="table">
-    <tbody>
-@foreach (var item in Model) {
+    .card-text {
+        margin-bottom: 10px;
+    }
 
+    .card-button {
+        display: flex;
+        justify-content: flex-end;
+    }
 
+    .btn-danger {
+        background-color: #dc3545;
+        color: #fff;
+    }
+</style>
 
-            <div class="card mb-4">
+<h1 class="text-light">Manage Bookings</h1>
+
+<div class="card-container">
+    @foreach (var item in Model)
+    {
+        <div class="card">
             <div class="card-body">
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.TimeStamp)</h5>
                 <p class="card-text">
                     <strong>Name:</strong> @Html.DisplayFor(modelItem => item.Attendee.Email) <br />
                     <strong>Name of Class:</strong> @Html.DisplayFor(modelItem => item.Class.Name) <br />
                     <strong>Status:</strong> @Html.DisplayFor(modelItem => item.Status)
-                </p>          
-                <div class="d-flex">
-                <button onclick="confirmDelete('@Url.Action("Delete", new { id = @item.Id })')" class="btn-danger btn">Cancel Booking</button>
+                </p>
+                <div class="card-button">
+                    <button onclick="confirmDelete('@Url.Action("Delete", new { id = @item.Id })')" class="btn btn-danger">Cancel Booking</button>
                 </div>
             </div>
         </div>
-}
-    </tbody>
-</table>
+    }
+</div>
 
 <script>
     function confirmDelete(deleteUrl) {
@@ -38,7 +72,7 @@
             text: 'You will not be able to recover this booking!',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
+            confirmButtonText: 'Yes, cancel it!',
             cancelButtonText: 'No, keep it'
         }).then((result) => {
             if (result.isConfirmed) {

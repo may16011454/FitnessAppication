@@ -8,32 +8,38 @@
         <div class="row">
             <div class="col-md-6 mb-4">
                 <a href="@Url.Action("Index", "Booking", new { area = "Customer" })" class="card text-decoration-none text-center">
-                    <div class="card-body bg-primary" style="height: 200px;">
-                        <h5 class="card-title text-dark" style="font-size: 24px; line-height: 150px;">Book Class</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-6 mb-4">
-                <a href="@Url.Action("Index", "Home", new { area = "Customer" })" class="card text-decoration-none text-center">
-                    <div class="card-body bg-secondary" style="height: 200px;">
-                        <h5 class="card-title text-dark" style="font-size: 24px; line-height: 150px;">Manage Bookings</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-6 mb-4">
-                <a href="@Url.Action("Index", "ViewClass", new { area = "Customer" })" class="card text-decoration-none text-center">
-                    <div class="card-body bg-info" style="height: 200px;">
-                        <h5 class="card-title text-dark" style="font-size: 24px; line-height: 150px;">View Classes</h5>
+                    <div class="card-body bg-primary rounded" style="height: 400px; width:400px; background-image: url('images/gymbooking.jpg'); background-size: cover; background-position: center;">
+                        <h5 class="card-title text-light" style="font-size: 36px; line-height: 250px;">Book Class</h5>
                     </div>
                 </a>
             </div>
             <div class="col-md-6 mb-4">
                 <a href="@Url.Action("Index", "Bookings", new { area = "Customer" })" class="card text-decoration-none text-center">
-                    <div class="card-body bg-warning" style="height: 200px;">
-                        <h5 class="card-title text-dark" style="font-size: 24px; line-height: 150px;">View Bookings</h5>
+                    <div class="card-body bg-warning rounded" style="height: 400px; width: 400px;  background-image: url('/images/gymviewbookings.jpg'); background-size: cover; background-position: center;">
+                        <h5 class="card-title text-light" style="font-size: 36px; line-height: 250px;">Manage Bookings</h5>
                     </div>
                 </a>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 15px;
+        height: 100%;
+    }
+
+    .card-body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-title {
+        font-size: 24px;
+        line-height: 150px;
+    }
+</style>
