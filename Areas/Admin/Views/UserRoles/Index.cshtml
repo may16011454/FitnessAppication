@@ -5,40 +5,31 @@
     ViewData["Title"] = "User Roles Manager Page";
 }
 
-<div class = "text-center">
-<h1>User Roles Manager</h1>
+<div class="text-center">
+    <h1>User Roles Manager</h1>
 
-@if (ViewData["Message"] != null)
-{
-    <div class="alert alert-danger mx-2">@ViewData["Message"]</div>
-}
-
-<table class ="table table-striped">
-    <thead class="thead-light">
-        <tr>
-            <th>User ID</th>
-            <th>User Email</th>
-            <th>Roles</th>
-            <th>Manage Roles</th>
-            <th>Manager User</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var user in Model)
-            {
-                <tr>
-                    <td>@user.User.Id</td>
-                    <td>@user.User.Email</td>
-                    <td>@string.Join(" , ", user.Roles.ToList())</td>
-                    <td>
-                        <a class="btn-primary bg-primary btn"asp-action="Manage" asp-route-id="@user.User.Id">Manage Roles</a>
-                    </td>
-                    <td>
-                        <a class="btn-primary bg-danger btn"asp-action="Delete" asp-route-id="@user.User.Id">Delete User</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-</table>
-
+    @if (ViewData["Message"] != null)
+    {
+        <div class="alert alert-danger mx-2">@ViewData["Message"]</div>
+    }
 </div>
+<div class="d-flex flex-wrap">
+    @foreach (var user in Model)
+    {
+        <div class="card mb-4 mt-4">
+            <div class="card-body">
+                <h5 class="card-title">@user.User.Email</h5>
+                <p class="card-text">
+                    <strong>User ID:</strong> @user.User.Id<br />
+                    <strong>Roles:</strong> @string.Join(", ", user.Roles.ToList())<br />
+                </p>
+                <div class="d-flex justify-content-between">
+                    <a class="btn btn-primary w-100" asp-action="Manage" asp-route-id="@user.User.Id">Manage Roles</a>
+                    <a class="btn btn-danger w-100 mx-2" asp-action="Delete" asp-route-id="@user.User.Id">Delete User</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
