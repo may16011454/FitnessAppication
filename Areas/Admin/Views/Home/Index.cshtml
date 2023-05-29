@@ -2,7 +2,70 @@
     ViewData["Title"] = "Admin Home Page";
 }
 
-<div class = "text-center">
-<h1>Admin Home Manager</h1>
-<p><a asp-action="Create" class="btn btn-primary" >Do Admin Things</a></p>
+<style>
+    body {
+        background-image: url("images/gymbg.jpg");
+        background-size: cover;
+        background-position: center;
+    }
+
+    .card-text {
+        color: black;
+    }
+
+    .background-overlay {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+</style>
+
+<div class="background-overlay">
+    <div class="text-center">
+        <h1>Admin Home Manager</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <a asp-area="Admin" asp-controller="RolesManager" asp-action="Index" class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Roles Manager</h5>
+                        <p class="card-text">Manage user roles.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a asp-area="Admin" asp-controller="UserRoles" asp-action="Index" class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">User Roles Manager</h5>
+                        <p class="card-text">Manage user roles.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a asp-area="Admin" asp-controller="Room" asp-action="Index" class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Room Manager</h5>
+                        <p class="card-text">Manage rooms.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a asp-area="Admin" asp-controller="Equipment" asp-action="Index" class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Equipment Manager</h5>
+                        <p class="card-text">Manage gym equipment.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a asp-area="Admin" asp-controller="ClassSchedule" asp-action="Index" class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Manage Classes</h5>
+                        <p class="card-text">Manage classes.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
