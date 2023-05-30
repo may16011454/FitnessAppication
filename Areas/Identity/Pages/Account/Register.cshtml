@@ -15,39 +15,62 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: auto;
-        background-color: rgba(255, 255, 255, 0.8);
+        height: 100vh;
     }
 
-    .register-form {
+    .card {
         border: 1px solid #ccc;
         border-radius: 4px;
         padding: 15px;
+        background-color: rgba(255, 255, 255, 0.8);
         width: 50%;
+    }
+
+    .card-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .form-group {
+        position: relative;
+        margin-bottom: 15px;
+    }
+
+    .custom-input {
+        width: 100%;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
     }
 </style>
 
 <div class="register-container">
-    <div class="register-form">
+    <div class="card">
         <h1>@ViewData["Title"]</h1>
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h2>Create a new account.</h2>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating" style="position: relative; margin-bottom: 15px;">
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                <label asp-for="Input.Email"></label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            <div class="form-group">
+                <div class="form-floating">
+                    <input asp-for="Input.Email" class="form-control custom-input" autocomplete="username" aria-required="true" />
+                    <label asp-for="Input.Email"></label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-floating" style="position: relative; margin-bottom: 15px;">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.Password"></label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            <div class="form-group">
+                <div class="form-floating">
+                    <input asp-for="Input.Password" class="form-control custom-input" autocomplete="new-password" aria-required="true" />
+                    <label asp-for="Input.Password"></label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-floating" style="position: relative; margin-bottom: 15px;">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.ConfirmPassword"></label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            <div class="form-group">
+                <div class="form-floating">
+                    <input asp-for="Input.ConfirmPassword" class="form-control custom-input" autocomplete="new-password" aria-required="true" />
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
             </div>
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </form>

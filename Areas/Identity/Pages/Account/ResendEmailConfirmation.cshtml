@@ -4,19 +4,75 @@
     ViewData["Title"] = "Resend email confirmation";
 }
 
-<h1>@ViewData["Title"]</h1>
-<h2>Enter your email.</h2>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<style>
+    body {
+        background-image: url('/images/gymbg.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 15px;
+        margin-bottom: 15px;
+        background-color: rgba(255, 255, 255, 0.8);
+        width: calc(50% - 15px);
+        box-sizing: border-box;
+    }
+
+    .card-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        margin-bottom: 10px;
+    }
+
+    .card-button {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+    .form-group {
+        position: relative;
+        margin-bottom: 15px;
+    }
+
+    .custom-input {
+        width: 100%;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+</style>
+
+<div class="login-container">
+    <div class="card">
+        <h1>@ViewData["Title"]</h1>
+        <h2>Enter your email.</h2>
         <form method="post">
+            <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Input.Email" class="form-control" aria-required="true" />
-                <label asp-for="Input.Email" class="form-label"></label>
+            <div class="form-group">
+                <input asp-for="Input.Email" class="form-control custom-input" aria-required="true" />
+                <label asp-for="Input.Email" class="form-label">Email</label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Resend</button>
+            <button type="submit" class="w-100 btn btn-lg btn-primary custom-btn">Resend</button>
         </form>
     </div>
 </div>
